@@ -29,5 +29,11 @@ html = browser.current_url
 html_source = requests.get(html).text
 soup = BeautifulSoup(html_source, 'lxml')
 
+top_movies = []
+for name in soup.findAll('td', class_='titleColumn'):
+    top_movies.append(name.a.text)
+
+
 # stop selenium browser
+time.sleep(5)
 browser.quit()
